@@ -3,6 +3,7 @@ var FileInfo = loadExtension("qbs.FileInfo");
 var ModUtils = loadExtension("qbs.ModUtils");
 var PathTools = loadExtension("qbs.PathTools");
 
+
 function toolPath(product, tool) {
     var linkerPath = product.moduleProperty('cpp', "linkerPath");
     var toolchainInstallPath = FileInfo.path(product.moduleProperty("cpp", "linkerPath")) + "/";
@@ -18,5 +19,8 @@ function toolPath(product, tool) {
     } else {
         toolchainPrefix = "arm-eabi-";
     }
+    print(Object.getOwnPropertyNames(product));
     return toolchainInstallPath + toolchainPrefix + tool + toolchainSuffix;
 }
+
+

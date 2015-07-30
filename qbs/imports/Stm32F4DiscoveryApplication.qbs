@@ -6,6 +6,8 @@ import qbs.Process
 import qbs.TextFile
 
 import "helpers.js" as Helpers
+import "modulesinfo.js" as ModulesInfo
+
 
 Product {
     type: ["application"] // To suppress bundle generation on Mac
