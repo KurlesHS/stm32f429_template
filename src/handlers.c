@@ -1,5 +1,7 @@
 #if defined(DEBUG)
 
+void __attribute__ ((section(".after_vectors"),noreturn,weak)) _start();
+
 // The DEBUG version is not naked, but has a proper stack frame,
 // to allow setting breakpoints at Reset_Handler.
 void __attribute__ ((section(".after_vectors"),noreturn))

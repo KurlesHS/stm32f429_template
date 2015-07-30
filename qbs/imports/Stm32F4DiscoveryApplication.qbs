@@ -202,6 +202,7 @@ Product {
     ]
 
     cpp.includePaths: [
+        "../system/source/newlib",
         "../system/include/cmsis",
         "../system/include/cortexm",
         "../system/include/stm32f4-hal"
@@ -238,7 +239,7 @@ Product {
         name: "release build"
         condition: qbs.buildVariant == "release"
         cpp.defines: baseDefines
-        cpp.commonCompilerFlags: baseCommonCompilerFlags.concat([])
+        cpp.commonCompilerFlags: baseCommonCompilerFlags
     }
 
     Group {
@@ -254,7 +255,7 @@ Product {
         name: "hal"
         prefix: "../system/"
         files: {
-            var f = [];
+            var f = ["include/stm32f4-hal/stm32f4xx_hal_conf.h"];
             if (halModule) {
                 f = f.concat( ["source/stm32f4-hal/stm32f4xx_hal.c",
                                "include/stm32f4-hal/stm32f4xx_hal.h"]);
