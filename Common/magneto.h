@@ -1,10 +1,10 @@
 /**
   ******************************************************************************
-  * @file    Templates/Inc/main.h 
+  * @file    magneto.h
   * @author  MCD Application Team
-  * @version V1.2.1
-  * @date    13-March-2015
-  * @brief   Header for main.c module
+  * @version V2.2.0
+  * @date    09-February-2015
+  * @brief   This header file contains the functions prototypes for the MAGNETO driver.
   ******************************************************************************
   * @attention
   *
@@ -34,22 +34,90 @@
   *
   ******************************************************************************
   */
-  
+
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __MAIN_H
-#define __MAIN_H
+#ifndef __MAGNETO_H
+#define __MAGNETO_H
+
+#ifdef __cplusplus
+ extern "C" {
+#endif
 
 /* Includes ------------------------------------------------------------------*/
-// #include "stm32f4xx_hal.h"
 #include <stdint.h>
-#include "system_stm32f4xx.h"
-#include "stm32f4xx_hal_ltdc.h"
 
-/* Exported types ------------------------------------------------------------*/
-/* Exported constants --------------------------------------------------------*/
-/* Exported macro ------------------------------------------------------------*/
-/* Exported functions ------------------------------------------------------- */
+/** @addtogroup BSP
+  * @{
+  */
 
-#endif /* __MAIN_H */
+/** @addtogroup Components
+  * @{
+  */
+    
+/** @addtogroup MAGNETO
+  * @{
+  */
+
+/** @defgroup MAGNETO_Exported_Types
+  * @{
+  */ 
+
+/** @defgroup MAGNETO_Config_structure  Magnetometer Configuration structure
+  * @{
+  */
+typedef struct
+{
+  uint8_t Register1;
+  uint8_t Register2;
+  uint8_t Register3;
+  uint8_t Register4;
+  uint8_t Register5;
+}MAGNETO_InitTypeDef;
+/**
+  * @}
+  */
+
+/** @defgroup MAGNETO_Driver_structure  Magnetometer Driver structure
+  * @{
+  */
+typedef struct
+{  
+  void      (*Init)(MAGNETO_InitTypeDef);
+  uint8_t   (*ReadID)(void);
+  void      (*Reset)(void);
+  void      (*ConfigIT)(void);
+  void      (*EnableIT)(uint8_t);
+  void      (*DisableIT)(uint8_t);
+  uint8_t   (*ITStatus)(uint16_t);
+  void      (*ClearIT)(void);
+  void      (*FilterConfig)(uint8_t);
+  void      (*FilterCmd)(uint8_t);
+  void      (*GetXYZ)(int16_t *);
+}MAGNETO_DrvTypeDef;
+/**
+  * @}
+  */
+
+/**
+  * @}
+  */
+
+/**
+  * @}
+  */
+
+/**
+  * @}
+  */
+
+/**
+  * @}
+  */
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* __MAGNETO_H */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

@@ -1,10 +1,10 @@
 /**
   ******************************************************************************
-  * @file    Templates/Inc/main.h 
+  * @file    ts.h
   * @author  MCD Application Team
-  * @version V1.2.1
-  * @date    13-March-2015
-  * @brief   Header for main.c module
+  * @version V2.2.0
+  * @date    09-February-2015
+  * @brief   This file contains all the functions prototypes for the Touch Screen driver.
   ******************************************************************************
   * @attention
   *
@@ -34,22 +34,74 @@
   *
   ******************************************************************************
   */
-  
+
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __MAIN_H
-#define __MAIN_H
+#ifndef __TS_H
+#define __TS_H
+
+#ifdef __cplusplus
+ extern "C" {
+#endif
 
 /* Includes ------------------------------------------------------------------*/
-// #include "stm32f4xx_hal.h"
-#include <stdint.h>
-#include "system_stm32f4xx.h"
-#include "stm32f4xx_hal_ltdc.h"
+#include <stdint.h> 
 
-/* Exported types ------------------------------------------------------------*/
-/* Exported constants --------------------------------------------------------*/
-/* Exported macro ------------------------------------------------------------*/
-/* Exported functions ------------------------------------------------------- */
+/** @addtogroup BSP
+  * @{
+  */
 
-#endif /* __MAIN_H */
+/** @addtogroup Components
+  * @{
+  */
+    
+/** @addtogroup TS
+  * @{
+  */
+
+/** @defgroup TS_Exported_Types
+  * @{
+  */
+
+/** @defgroup TS_Driver_structure  Touch Sensor Driver structure
+  * @{
+  */
+typedef struct
+{  
+  void       (*Init)(uint16_t);
+  uint16_t   (*ReadID)(uint16_t);
+  void       (*Reset)(uint16_t);
+  void       (*Start)(uint16_t);
+  uint8_t    (*DetectTouch)(uint16_t);
+  void       (*GetXY)(uint16_t, uint16_t*, uint16_t*);
+  void       (*EnableIT)(uint16_t);
+  void       (*ClearIT)(uint16_t);
+  uint8_t    (*GetITStatus)(uint16_t);
+  void       (*DisableIT)(uint16_t);
+}TS_DrvTypeDef;
+/**
+  * @}
+  */
+
+/**
+  * @}
+  */
+
+/**
+  * @}
+  */
+
+/**
+  * @}
+  */
+
+/**
+  * @}
+  */
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* __TS_H */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

@@ -1,10 +1,11 @@
 /**
   ******************************************************************************
-  * @file    Templates/Inc/main.h 
+  * @file    epd.h
   * @author  MCD Application Team
-  * @version V1.2.1
-  * @date    13-March-2015
-  * @brief   Header for main.c module
+  * @version V2.2.0
+  * @date    09-February-2015
+  * @brief   This file contains all the functions prototypes for the 
+  *          EPD (E Paper Display) driver.   
   ******************************************************************************
   * @attention
   *
@@ -33,23 +34,82 @@
   * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   *
   ******************************************************************************
-  */
-  
+  */ 
+
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __MAIN_H
-#define __MAIN_H
+#ifndef __EPD_H
+#define __EPD_H
+
+#ifdef __cplusplus
+ extern "C" {
+#endif
 
 /* Includes ------------------------------------------------------------------*/
-// #include "stm32f4xx_hal.h"
 #include <stdint.h>
-#include "system_stm32f4xx.h"
-#include "stm32f4xx_hal_ltdc.h"
 
-/* Exported types ------------------------------------------------------------*/
-/* Exported constants --------------------------------------------------------*/
-/* Exported macro ------------------------------------------------------------*/
-/* Exported functions ------------------------------------------------------- */
+/** @addtogroup BSP
+  * @{
+  */
 
-#endif /* __MAIN_H */
+/** @addtogroup Components
+  * @{
+  */
+  
+/** @addtogroup Common
+  * @{
+  */
+
+/** @addtogroup EPD
+  * @{
+  */
+
+/** @defgroup EPD_Exported_Types
+  * @{
+  */
+
+/** @defgroup EPD_Driver_structure  E Paper Display Driver structure
+  * @{
+  */
+typedef struct
+{
+  void     (*Init)(void);
+  void     (*WritePixel)(uint8_t);
+
+  /* Optimized operation */
+  void     (*SetDisplayWindow)(uint16_t, uint16_t, uint16_t, uint16_t);
+  void     (*RefreshDisplay)(void);
+  void     (*CloseChargePump)(void);
+
+  uint16_t (*GetEpdPixelWidth)(void);
+  uint16_t (*GetEpdPixelHeight)(void);
+  void     (*DrawImage)(uint16_t, uint16_t, uint16_t, uint16_t, uint8_t*);
+}
+EPD_DrvTypeDef;
+/**
+  * @}
+  */
+
+/**
+  * @}
+  */
+
+/**
+  * @}
+  */
+
+/**
+  * @}
+  */
+
+/**
+  * @}
+  */
+
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* EPD_H */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

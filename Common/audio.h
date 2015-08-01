@@ -1,10 +1,11 @@
 /**
   ******************************************************************************
-  * @file    Templates/Inc/main.h 
+  * @file    audio.h
   * @author  MCD Application Team
-  * @version V1.2.1
-  * @date    13-March-2015
-  * @brief   Header for main.c module
+  * @version V2.2.0
+  * @date    09-February-2015
+  * @brief   This header file contains the common defines and functions prototypes
+  *          for the Audio driver.  
   ******************************************************************************
   * @attention
   *
@@ -34,22 +35,87 @@
   *
   ******************************************************************************
   */
-  
+
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __MAIN_H
-#define __MAIN_H
+#ifndef __AUDIO_H
+#define __AUDIO_H
+
+#ifdef __cplusplus
+ extern "C" {
+#endif
 
 /* Includes ------------------------------------------------------------------*/
-// #include "stm32f4xx_hal.h"
 #include <stdint.h>
-#include "system_stm32f4xx.h"
-#include "stm32f4xx_hal_ltdc.h"
 
-/* Exported types ------------------------------------------------------------*/
-/* Exported constants --------------------------------------------------------*/
-/* Exported macro ------------------------------------------------------------*/
-/* Exported functions ------------------------------------------------------- */
+/** @addtogroup BSP
+  * @{
+  */
 
-#endif /* __MAIN_H */
+/** @addtogroup Components
+  * @{
+  */
+    
+/** @addtogroup AUDIO
+  * @{
+  */
+
+/** @defgroup AUDIO_Exported_Constants
+  * @{
+  */
+
+/* Codec audio Standards */
+#define CODEC_STANDARD                0x04
+#define I2S_STANDARD                  I2S_STANDARD_PHILIPS
+
+/**
+  * @}
+  */
+
+/** @defgroup AUDIO_Exported_Types
+  * @{
+  */
+
+/** @defgroup AUDIO_Driver_structure  Audio Driver structure
+  * @{
+  */
+typedef struct
+{
+  uint32_t  (*Init)(uint16_t, uint16_t, uint8_t, uint32_t);
+  uint32_t  (*ReadID)(uint16_t);
+  uint32_t  (*Play)(uint16_t, uint16_t*, uint16_t);
+  uint32_t  (*Pause)(uint16_t);
+  uint32_t  (*Resume)(uint16_t);
+  uint32_t  (*Stop)(uint16_t, uint32_t);
+  uint32_t  (*SetFrequency)(uint16_t, uint32_t);
+  uint32_t  (*SetVolume)(uint16_t, uint8_t);
+  uint32_t  (*SetMute)(uint16_t, uint32_t);
+  uint32_t  (*SetOutputMode)(uint16_t, uint8_t);
+  uint32_t  (*Reset)(uint16_t);
+}AUDIO_DrvTypeDef;
+/**
+  * @}
+  */
+
+/**
+  * @}
+  */
+
+/**
+  * @}
+  */
+
+/**
+  * @}
+  */
+
+/**
+  * @}
+  */
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* __AUDIO_H */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

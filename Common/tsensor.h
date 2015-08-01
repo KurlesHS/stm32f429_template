@@ -1,10 +1,11 @@
 /**
   ******************************************************************************
-  * @file    Templates/Inc/main.h 
+  * @file    tsensor.h
   * @author  MCD Application Team
-  * @version V1.2.1
-  * @date    13-March-2015
-  * @brief   Header for main.c module
+  * @version V2.2.0
+  * @date    09-February-2015
+  * @brief   This header file contains the functions prototypes for the
+  *          Temperature Sensor driver. 
   ******************************************************************************
   * @attention
   *
@@ -34,22 +35,84 @@
   *
   ******************************************************************************
   */
-  
+
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __MAIN_H
-#define __MAIN_H
+#ifndef __TSENSOR_H
+#define __TSENSOR_H
+
+#ifdef __cplusplus
+ extern "C" {
+#endif
 
 /* Includes ------------------------------------------------------------------*/
-// #include "stm32f4xx_hal.h"
 #include <stdint.h>
-#include "system_stm32f4xx.h"
-#include "stm32f4xx_hal_ltdc.h"
 
-/* Exported types ------------------------------------------------------------*/
-/* Exported constants --------------------------------------------------------*/
-/* Exported macro ------------------------------------------------------------*/
-/* Exported functions ------------------------------------------------------- */
+/** @addtogroup BSP
+  * @{
+  */
 
-#endif /* __MAIN_H */
+/** @addtogroup Components
+  * @{
+  */
+    
+/** @addtogroup TSENSOR
+  * @{
+  */
+
+/** @defgroup TSENSOR_Exported_Types
+  * @{
+  */ 
+
+/** @defgroup TSENSOR_Driver_structure  Temperature Sensor Driver structure
+  * @{
+  */
+typedef struct
+{  
+  void       (*Init)(uint16_t, TSENSOR_InitTypeDef *);
+  uint8_t    (*IsReady)(uint16_t, uint32_t);
+  uint8_t    (*ReadStatus)(uint16_t);
+  uint16_t   (*ReadTemp)(uint16_t); 
+}TSENSOR_DrvTypeDef;
+/**
+  * @}
+  */
+
+/** @defgroup TSENSOR_Config_structure  Temperature Sensor Configuration structure
+  * @{
+  */
+typedef struct
+{
+  uint8_t AlertMode;            /* Alert Mode Temperature out of range*/
+  uint8_t ConversionMode;       /* Continuous/One Shot Mode */
+  uint8_t ConversionResolution; /* Temperature Resolution */
+  uint8_t ConversionRate;       /* Number of measure per second */
+  uint8_t TemperatureLimitHigh; /* High Temperature Limit Range */
+  uint8_t TemperatureLimitLow;  /* Low Temperature Limit Range */
+}TSENSOR_InitTypeDef;
+/**
+  * @}
+  */
+
+/**
+  * @}
+  */
+
+/**
+  * @}
+  */
+
+/**
+  * @}
+  */
+
+/**
+  * @}
+  */
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* __TSENSOR_H */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

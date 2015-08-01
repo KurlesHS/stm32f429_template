@@ -207,7 +207,8 @@ Product {
         "../system/source/newlib",
         "../system/include/cmsis",
         "../system/include/cortexm",
-        "../system/include/stm32f4-hal"
+        "../system/include/stm32f4-hal",
+        "../src"
     ]
 
     cpp.linkerFlags: [

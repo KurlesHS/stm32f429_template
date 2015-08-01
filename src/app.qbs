@@ -13,8 +13,8 @@ Stm32F4DiscoveryApplication {
     halCrypModule: false
     halDacModule: false
     halDcmiModule: false
-    halDmaModule: false
-    halDma2DModule: false
+    halDmaModule: true
+    halDma2DModule: true
     halEthModule: false
     halFlashModule: true
     halNandModule: false
@@ -24,17 +24,17 @@ Stm32F4DiscoveryApplication {
     halSDRamModule: false
     halHashModule: false
     halGpioModule: true
-    halI2CModule: false
+    halI2CModule: true
     halI2SModule: false
     halIwdgModule: false
-    halLtdcModule: false
+    halLtdcModule: true
     halPwrModule: true
     halRccModule: true
     halRngModule: false
     halRtcModule: false
     halSaiModule: false
     halSDModule: false
-    halSpiModule: false
+    halSpiModule: true
     halTimModule: false
     halUartModule: false
     halUsartModule: false
